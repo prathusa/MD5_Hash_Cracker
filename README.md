@@ -103,7 +103,7 @@ adjustments for C++ and CUDA 64-bit systems.
 
 Once I cleaned up all of the bugs, I ran the cracker for multiple sample hashes to test for
 correctness and get timing data. All data comes from the GTX 1080 provided by WACC on
-Euler. The sustained hash rate of this algorithm is **915 Mh/s**. 
+Euler. The sustained hash rate of this algorithm is **1,120 Mh/s**. 
 The y-axis of the graph is logarithmic to better represent the relationship between String and Time.
 
 ![image](https://github.com/prathusa/MD5_Hash_Cracker/blob/main/MD5%20Brute%20Force%20Timings.png)
