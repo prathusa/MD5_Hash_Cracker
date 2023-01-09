@@ -34,13 +34,11 @@ secure encryption methods to protect sensitive data.
 The MD5 algorithm is a widely used cryptographic hashing algorithm that is used to
 verify the integrity of data. You may have seen an MD5 hash provided with a large file
 download in order to confirm package validity. In the past, MD5 has seen usage in database
-password encryption due to its relatively simple and fast algorithm. Unfortunately, its sus-
-ceptibility to brute force attacks is a major security concern and one of the reasons it is
+password encryption due to its relatively simple and fast algorithm. Unfortunately, its susceptibility to brute force attacks is a major security concern and one of the reasons it is
 discouraged from being used by Cryptographers.
 
 A brute force attack is a type of attack that attempts to exhaustively try all possible
-combinations of characters until the correct one is found. Due to the sheer number of pos-
-sible combinations, a brute-force attack on an MD5 hash can be extremely time-consuming.
+combinations of characters until the correct one is found. Due to the sheer number of possible combinations, a brute-force attack on an MD5 hash can be extremely time-consuming.
 However, with the availability of powerful parallel GPU (Graphics Processing Unit) systems,
 attackers can perform brute force attacks at much faster speeds. By utilizing a large number
 of threads available on a GPU, attackers can drastically reduce the amount of time needed
@@ -105,8 +103,8 @@ adjustments for C++ and CUDA 64-bit systems.
 
 Once I cleaned up all of the bugs, I ran the cracker for multiple sample hashes to test for
 correctness and get timing data. All data comes from the GTX 1080 provided by WACC on
-Euler. The y-axis of the graph is logarithmic to better represent the relationship between
-String and Time.
+Euler. The sustained hash rate of this algorithm is **915 Mh/s**. 
+The y-axis of the graph is logarithmic to better represent the relationship between String and Time.
 
 ![image](https://github.com/prathusa/MD5_Hash_Cracker/blob/main/MD5%20Brute%20Force%20Timings.png)
 
@@ -114,23 +112,23 @@ Figure 1: Runtime graph
 
 ```
 String Time (ms)
-0 0.
-Z 0.
-zz 0.
-AAA 0.
-LIP 0.
-hey 0.
-with 12.
-rizz 17.
-world 600.
-hello 868.
-ece759 9659.
-0000000 57478.
+0 0.052096
+Z 0.049152
+zz 0.050176
+AAA 0.125952
+LIP 0.301472
+hey 0.3584
+with 12.5133
+rizz 17.4026
+world 600.701
+hello 868.04
+ece759 9659.91
+0000000 57478.9
 1111111 119835
 fromis9 740909
-ALLCAPS 1.85e+
-pratham 2.83e+
-zzzzzzz ∼3.91e+
+ALLCAPS 1.85e+6
+pratham 2.83e+6
+zzzzzzz ∼3.91e+6
 ```
 Figure 2: Runtime table
 
@@ -193,8 +191,7 @@ make test_euler
 
 I see a lot of room for optimization and improvements with my implementation.
 
-In my implementation, I convert a thread’s id into a string and then run the MD5 algorithm. If we pick our block dims correctly (blockDim = length of character set), we can
-share a block string and simply concatenate it with the thread id-specific character. I tried
+In my implementation, I convert a thread’s id into a string and then run the MD5 algorithm. If we pick our block dims correctly (blockDim = length of character set), we can share a block string and simply concatenate it with the thread id-specific character. I tried
 implementing this but I ran into a bug, so I reverted to my working algorithm.
 
 Since this task scales very well horizontally, another improvement would be requesting
@@ -230,10 +227,8 @@ currently think are unfeasible to brute force may actually be susceptible.
 
 ## References
 
-[Wik22] Wikipedia contributors.MD5 — Wikipedia, The Free Encyclopedia. [Online; ac-
-cessed 14-December-2022]. 2022.
+[Wik22] Wikipedia contributors.MD5 — Wikipedia, The Free Encyclopedia. [Online; accessed 14-December-2022]. 2022.
 
-[Riv92] R. Rivest.The MD5 Message-Digest Algorithm. [Online; accessed 14-December-
-2022]. April 1992.
+[Riv92] R. Rivest.The MD5 Message-Digest Algorithm. [Online; accessed 14-December-2022]. April 1992.
 
 
