@@ -110,8 +110,7 @@ String and Time.
 
 ![image](https://github.com/prathusa/MD5_Hash_Cracker/blob/main/MD5%20Brute%20Force%20Timings.png)
 
-Figure 1: Runtime graph on
-GTX 1050 Ti.
+Figure 1: Runtime graph
 
 ```
 String Time (ms)
@@ -133,8 +132,7 @@ ALLCAPS 1.85e+
 pratham 2.83e+
 zzzzzzz ∼3.91e+
 ```
-Figure 2: Runtime table on
-GTX 1050 Ti.
+Figure 2: Runtime table
 
 Although I was unable to time test how long it
 takes to crack all 7-digit passwords (string ’zzzzzzz’,
