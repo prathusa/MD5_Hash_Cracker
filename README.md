@@ -137,10 +137,8 @@ Figure 2: Runtime table
 Although I was unable to time test how long it
 takes to crack all 7-digit passwords (string ’zzzzzzz’,
 due to Euler time limitation), with the knowledge it
-takes 1 minute to attempt all 6-digits password combi-
-nations we can estimate that it will take a little over 1
-hour to attempt all permutations from 1 through 7 dig-
-its.
+takes 1 minute to attempt all 6-digits password combinations we can estimate that it will take a little over 1
+hour to attempt all permutations from 1 through 7 digits.
 
 Considering that these hashes need to be calculated only
 once, if you save the generated hashes in a lookup table then
@@ -159,8 +157,7 @@ Alongside this write-up, important files in the repo are
 6. md5.cpp – MD5 algorithm C++ implementation
 7. md5.h – MD5 algorithm C++ implementation
 
-There is only one executable produced from all of these files, which ismainand it re-
-quires no additional data dependencies.
+There is only one executable produced from all of these files, which ismainand it requires no additional data dependencies.
 
 Compilation:
 
@@ -196,18 +193,15 @@ make test_euler
 
 I see a lot of room for optimization and improvements with my implementation.
 
-In my implementation, I convert a thread’s id into a string and then run the MD5 al-
-gorithm. If we pick our block dims correctly (blockDim = length of character set), we can
+In my implementation, I convert a thread’s id into a string and then run the MD5 algorithm. If we pick our block dims correctly (blockDim = length of character set), we can
 share a block string and simply concatenate it with the thread id-specific character. I tried
 implementing this but I ran into a bug, so I reverted to my working algorithm.
 
 Since this task scales very well horizontally, another improvement would be requesting
 multiple GPUs for a multi-device effort. No data would need to be exchanged between the
-devices, they would just need to know of each others’ existence, basically outright multiply-
-ing the hash rate.
+devices, they would just need to know of each others’ existence, basically outright multiplying the hash rate.
 
-Another place of improvement can be with the conditionals. If I can reduce the if state-
-ments in the thread loop then I can reduce the accumulating warp divergence. Since there
+Another place of improvement can be with the conditionals. If I can reduce the if statements in the thread loop then I can reduce the accumulating warp divergence. Since there
 are millions of hashes being run, these seemingly small costs add up over time.
 
 Finally, one issue with this project is that increasing the kernel dimensions causes the
